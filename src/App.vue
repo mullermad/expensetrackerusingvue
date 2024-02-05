@@ -8,7 +8,7 @@
   <div>
 <Balance :total="+total"/>
 <IncomeExpense :income="+income" :expense="+expense"/>
-<TransactionList :transactions="transactions" />
+<TransactionList :transactions="transactions" @transactionDeleted="deleteTransaction" />
 <AddTransaction @transactionSubmitted="handleTransactionSubmitted"/>
   </div>
   
@@ -81,6 +81,17 @@ function generateUniqueId() {
           toast.success('Transaction sucessfully added')
         }
 
+        //delete transaction
+
+        const deleteTransaction=(id)=>{
+          console.log('the touched id is ',id);
+          transactions.value=transactions.value.filter((transaction)=>
+            transaction.id !==id
+            
+            
+          )
         
+          toast.success('Transaction deleted')
+        }
 
 </script>
